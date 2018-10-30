@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'js/lib/bootstrap-3.3.7-dist/css/bootstrap.css' %}">
+    <script src="{% static 'js/lib/jquery/jquery-1.12.4.js'%}"></script>
+    <script src="{% static 'js/app/index.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'css/index.css'%}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css'%}" />
+    <link rel="stylesheet" href="{% static 'css/general.css'%}">
+    <link rel="stylesheet" href="{% static 'css/set_5.css'%}">
+    <link rel="stylesheet" href="{% static 'css/set_9.css'%}">
+    <link rel="stylesheet" href="{% static 'css/set_1.css'%}">
+    <title>个人博客系统~~{% block title %}项目首页面{% endblock %}</title>
+</head>
+<body style="background:#fcf8e3 url({% static 'img/IMG1.jpg'%}) no-repeat fixed center;background-size:100%;">
+    <!--导航栏-->
+    {% block nav %}
+    <div style="opacity:0.87;position:sticky;">
+       <div class="container_odd" style="padding:10px 0;position:fixed;z-index:100;">
+            <div class="set_container">
+              {% if request.session.loginUser %}
+              <ul class="nav navbar-nav">
+                  <li><a>欢迎您，<span style="color: red">{{request.session.loginUser.nickname}}</span>登录我们的系统</a></li>
+              </ul>
+              {% else %}
+            <a href="{% url 'blog:login'%}"><div class="set_5_button" >登录</div></a>
+            <!--End of Button 1 -->
+            <a href="{% url 'blog:register'%}"><div class="set_5_button2">注册</div></a>
+            <!--End of Button 2 -->
+              {% endif %}
+
+              {% if request.session.loginUser %}
+              <a href="{% url 'blog:register'%}"><div class="set_5_button2">注册</div></a>
+              <a onclick="return confirm('您确定要退出登录吗？')" href="{% url 'blog:logout'%}"><div class="set_5_button3" style="float:right">退出登录</div></a>
+            <!--End of Button 3 -->
+              <a href="{% url 'blog:show' request.session.loginUser.id %}"><div class="set_5_button4" style="float:right">个人信息</div></a>
+            <!--End of Button 4 -->
+            <div style="clear:both"></div>
+              {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+
+    <div class="container" >
+        {% block top %}
+            <div class="page-header" style="margin-top:100px;opacity:0.87;">
+                <div class="jumbotron" style="background:#fcf8e3 url({% static 'img/IMG3.jpg'%}) no-repeat scroll center;background-size:1140px 300px;">
+                  <h1 style="color:white">python<span style="color:black">1806wanghao</span>博客项目练习</h1>
+                </div>
+            </div>
+        {% endblock %}
+
+
+        <div class="row">
+            {% block left %}
+            <div class="col-md-3" style="opacity:0.87;">
+                <div class="panel panel-primary">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">blog信息</h3>
+                  </div>
+                  <div class="panel-body">
+                      <div class="list-group" style="text-align: center">
+                          <a href="#" class="list-group-item">
+                              {% if request.session.loginUser %}
+                              <img style="height: 80px;width: 80px;" src="/{{ request.session.loginUser.avatar }}" alt="头像" class="img-circle">
+                              {% else %}
+                              <img style="height: 100px;width: 100px;" src="{% static 'img/Img2.png'%}" alt="头像" class="img-circle">
+                              {% endif %}
+                          </a>
+                          {% if request.session.loginUser.username == 'administrator'  %}
+                          <a href="{% url 'blog:list_user'%}" class="list-group-item">查看所有用户</a>
+                          {% endif %}
+                          {% if request.session.loginUser %}
+                          <a href="{% url 'blog:write_article'%}" class="list-group-item">写文章</a>
+                          <a href="{% url 'blog:all_arts'%}" class="list-group-item">查看所有文章</a>
+                          <a href="{% url 'blog:self_article'%}" class="list-group-item">查看自己文章</a>
+                          {% else %}
+                          <h3><a href="{% url 'blog:login'%}" style="text-decoration : none;"><span>登录Blog</span></a>，开启新世界的大门</h3>
+                          {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endblock %}
+
+            <div class="col-md-9" style="opacity:0.85;">
+                <div class="panel panel-primary">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">{% block content_title%}欢迎界面{% endblock %}</h3>
+                  </div>
+                  <div class="panel-body" style="min-height: 400px">
+                      {% block content %}
+                      <h1>欢迎来到Blog</h1>
+                      {% endblock %}
+                  </div>
+                </div>
+            </div>
+        </div>
+
+        {% block footer %}
+            <div class="top" style="background:lightblue;opacity:0.6;">
+                <ul class="list-inline" style="margin:auto;">
+                    <li><a href="#"><span>热门博客</span></a></li>
+                    <li><a href="#"><span>名人堂</span></a></li>
+                    <li><a href="#"><span>热门话题</span></a></li>
+                    <li><a href="#"><span>申请认证</span></a></li>
+                    <li><a href="#"><span>企业博客</span></a></li>
+                    <li><a href="#"><span>开放平台</span></a></li>
+                    <li><a href="#"><span>链接网站</span></a></li>
+                    <li><a href="#"><span>广告服务</span></a></li>
+                    <li><a href="#"><span>常见问题</span></a></li>
+                    <li><a href="#"><span>自助服务</span></a></li>
+                    <li><a href="#"><span>联系客服</span></a></li>
+                    <li><a href="#"><span>意见反馈</span></a></li>
+                    <li><a href="#"><span>友情链接</span></a></li>
+                </ul>
+            </div>
+            {% endblock %}
+     </div>
+
+    <script>
+
+    </script>
+</body>
+</html>

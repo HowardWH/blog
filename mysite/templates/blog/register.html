@@ -1,0 +1,102 @@
+{% extends 'index.html' %}
+
+{% block title%}
+    用户注册
+{% endblock%}
+
+{% block content_title%}
+    用户注册
+{% endblock%}
+
+{% block content %}
+    <div class="">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-3" style="color: red;font-weight: bolder">
+                {{msg}}
+            </div>
+        </div>
+            <div class="form-group row">
+                <label for="username" class="col-md-2 col-md-offset-1 control-label">用户名称：</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" name="username" id="username" placeholder="请输入您的用户名称">
+                    <span class="colgreen col-md-8" id="show1" ></span>
+                </div>
+
+            </div>
+
+
+            <div class="form-group row">
+                <label for="nickname" class="col-md-2 col-md-offset-1 control-label">用户昵称：</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" name="nickname" id="nickname" placeholder="请输入您的用户昵称">
+                    <span class="colgreen col-md-8" id="show2"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="age" class="col-md-2 col-md-offset-1 control-label">用户年龄：</label>
+                <div class="col-md-3">
+                    <input type="number" class="form-control" name="age" id="age" placeholder="请输入您的年龄">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="password" class="col-md-2 col-md-offset-1 control-label">用户密码：</label>
+                <div class="col-md-4">
+                   <input type="password" class="form-control" name="password" id="password" placeholder="请输入您的用户密码">
+                    <span class="colgreen" id="show3"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+               <label for="confirmpwd" class="col-md-2 col-md-offset-1 control-label">确认密码：</label>
+                  <div class="col-md-4">
+                    <input type="password" class="form-control" name="confirmpwd" id="confirmpwd" placeholder="请再次确认您的密码">
+                      <span class="colgreen" id="show4"></span>
+                  </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="email" class="col-md-2 col-md-offset-1 control-label">用户邮箱：</label>
+                <div class="col-md-4">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="请输入您的邮箱">
+                    <span class="colgreen" id="show5"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label  class="col-md-2 col-md-offset-1 control-label">设置头像：</label>
+                <div class="col-md-4">
+                    <input type="file" class="form-control" name="avatar" id="avatar" >
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label for="gender" class="col-md-2 col-md-offset-1 control-label">用户性别：</label>
+                <div class="col-md-2 col-md-offset-1">
+                    <input type="radio" class="" checked name="gender" id="gender" value="男">男
+                    <input type="radio" class="" name="gender"  value="女">女
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="code" class="col-md-2 col-md-offset-1 control-label">
+                    验证码：
+                </label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" name="code"  placeholder="请输入验证码">
+                </div>
+                <div class="col-md-5">
+                    <img id="mycode" src="{% url 'blog:code'%}" alt="验证码" title="点击刷新" style="cursor:pointer;" onclick="loadImg();">
+                </div>
+            </div>
+
+          <div class="form-group row">
+              <div class="col-md-2 col-md-offset-5">
+                  <button type="submit"  class="btn btn-danger">用户注册</button>
+              </div>
+          </div>
+    </div>
+
+{% endblock %}

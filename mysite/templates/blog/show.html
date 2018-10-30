@@ -1,0 +1,93 @@
+{% extends 'index.html' %}
+
+{% block title%}
+    个人信息
+{% endblock%}
+
+{% block content_title%}
+    个人信息
+{% endblock %}
+
+{% block content %}
+    {% if user.id == request.session.loginUser.id %}
+    <div class="container_odd">
+	    <div class="set_container">
+            <a href="{% url 'blog:update' user.id %}"><div class="set_9_btn-corner" id="show_info" > <span class="line1"></span> <span class="line2"></span> <span class="line3"></span> <span class="line4"></span> 编辑个人信息 </div></a>
+
+            <a href="{% url 'blog:changepwd' %}"><div class="set_9_btn2-corner" style="float:left;"> <span class="line1"></span> <span class="line2"></span> <span class="line3"></span> <span class="line4"></span> 修改密码 </div></a>
+        </div>
+      </div>
+
+    {% endif %}
+
+    <table width="500" class="info table table-hover">
+        <tr>
+            <td>用户名称：</td><td>{{user.username}}</td>
+        </tr>
+        <tr>
+            <td>用户昵称：</td><td>{{user.nickname}}</td>
+        </tr>
+        <tr>
+            <td>用户年龄：</td><td>{{user.age}}</td>
+        </tr>
+        <tr>
+            <td>用户邮箱：</td><td>{{user.email}}</td>
+        </tr>
+        <tr>
+            <td>用户性别：</td><td>{{user.gender}}</td>
+        </tr>
+    </table>
+
+
+
+    <!--<table width="800" style="display: none" class="editor_info">-->
+        <!--<tr>-->
+            <!--<td>用户名称：</td><td><input disabled type="text" value="{{user.username}}"></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td>用户昵称：</td><td><input type="text" value="{{user.nickname}}"></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td>用户年龄：</td><td><input type="number" value="{{user.age}}"></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td>用户邮箱：</td><td><input type="email" value="{{user.email}}"></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td>用户性别：</td>-->
+            <!--<td>-->
+                <!--{% if user.gender == '男'%}-->
+                <!--<input type="radio" checked name="gender"  value="男">男-->
+                <!--<input type="radio" name="gender"  value="女">女-->
+                <!--{% else %}-->
+                <!--<input type="radio"  name="gender"  value="男">男-->
+                <!--<input type="radio" checked name="gender"  value="女">女-->
+                <!--{% endif %}-->
+            <!--</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td><input type="submit" value="修改用户"></td>-->
+        <!--</tr>-->
+    <!--</table>-->
+
+    <!--<script>-->
+        <!--$(function() {-->
+            <!--var flag = false-->
+            <!--$("#show_info").click(function () {-->
+                <!--if (!flag) {-->
+                    <!--flag = true-->
+                    <!--console.info($(this))-->
+                    <!--$(this).html("取消编辑")-->
+                    <!--$(".info").hide()-->
+                    <!--$(".editor_info").show()-->
+                <!--} else {-->
+                    <!--flag = false-->
+                    <!--$(this).html("编辑个人信息")-->
+                    <!--$(".info").show()-->
+                    <!--$(".editor_info").hide()-->
+                <!--}-->
+            <!--})-->
+        <!--})-->
+    <!--</script>-->
+
+{% endblock%}

@@ -1,0 +1,29 @@
+.list-inline>li>a{
+    color :black;
+    font-size:17px;
+    font-weight:bold;
+    text-decoration : none;
+}
+.list-inline>li>a:hover{
+color:#F40B0B;
+}
+
+.container>.page-header>.jumbotron{
+     background-size: 1140px 250px ;
+}
+
+.panel-primary > .panel-heading{
+background:#9EC4E9;
+}
+
+
+.colred {
+        color:red;
+        font-weight:bold;
+    }
+.colgreen {
+        color:green;
+        font-weight:bold;
+    }
+
+
